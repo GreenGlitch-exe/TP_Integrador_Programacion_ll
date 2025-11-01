@@ -1,6 +1,7 @@
 package tpintegrado_sanchez_rios;
 
-public class Componente extends Producto {
+public class Componente extends Producto implements Vendible {
+
     private String socket;
 
     public Componente(String tipo, String descripcion, double precio, int stock, String socket) {
@@ -16,12 +17,9 @@ public class Componente extends Producto {
         this.socket = socket;
     }
 
-    @Override
-    public boolean validarDatos() {
-        return (getDescripcion() != null && !getDescripcion().isEmpty()
-                && getPrecio() > 0
-                && getStock() >= 0
-                && socket != null && !socket.isEmpty());
+    public boolean validarDatos(String socketExtra) {
+        boolean baseValida = super.validarDatos();
+        return baseValida && socketExtra != null && !socketExtra.isEmpty();
     }
 
     @Override

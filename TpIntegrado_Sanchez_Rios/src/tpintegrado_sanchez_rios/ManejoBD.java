@@ -113,7 +113,6 @@ public class ManejoBD {
             st.execute("DROP TABLE IF EXISTS facturas;");
             st.execute("DROP TABLE IF EXISTS productos;");
             st.execute("DROP TABLE IF EXISTS clientes;");
-            st.execute("DROP TABLE IF EXISTS administradores;");
 
             // 🔹 Crear las tablas de nuevo
             st.execute("CREATE TABLE productos ("
@@ -131,14 +130,6 @@ public class ManejoBD {
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "nombre TEXT NOT NULL,"
                     + "dni TEXT NOT NULL UNIQUE"
-                    + ");");
-
-            st.execute("CREATE TABLE administradores ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "nombre TEXT NOT NULL,"
-                    + "dni TEXT NOT NULL UNIQUE,"
-                    + "password TEXT NOT NULL,"
-                    + "sueldo REAL NOT NULL"
                     + ");");
 
             st.execute("CREATE TABLE facturas ("
@@ -159,7 +150,6 @@ public class ManejoBD {
                     + "FOREIGN KEY(producto_id) REFERENCES productos(id)"
                     + ");");
 
-            System.out.println("✅ Base de datos reiniciada correctamente.");
         } catch (SQLException e) {
             System.err.println("❌ Error al reiniciar la base de datos: " + e.getMessage());
         }
