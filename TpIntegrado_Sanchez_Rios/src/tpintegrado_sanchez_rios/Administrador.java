@@ -35,15 +35,16 @@ public class Administrador extends Empleado {
 
     public void reiniciarBaseDeDatos(String pass) {
         if (this.password.equals(pass)) {
-            ManejoBD.getInstance().initDatabase(); // o resetDatabase() si tu clase ManejoBD lo tiene
+            ManejoBD.getInstance().resetDatabase();
             System.out.println("✅ Base de datos reiniciada correctamente.");
         } else {
             System.out.println("❌ Contraseña incorrecta. No se reinició la base de datos.");
         }
     }
-
+    
     @Override
     public void mostrar() {
-        System.out.println("Administrador: " + getNombre() + " | DNI: " + getDni() + " | Sueldo: $" + getSueldo());
+        System.out.println("Administrador: " + getNombre() + " | DNI: " + getDni() + " | Sueldo: " + getSueldo());
     }
+
 }

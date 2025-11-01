@@ -181,10 +181,24 @@ public class TpIntegrador_Sanchez_Rios {
 
                                     if (tipo.equalsIgnoreCase("Componente")) {
                                         String socket = leerStringSeguro("Tipo de socket: ");
-                                        tienda.agregarProducto(new Componente("Componente", descripcion, precio, stock, socket));
+                                        Componente comp = new Componente("Componente", descripcion, precio, stock, socket);
+
+                                        if (comp.validarDatos(socket)) {
+                                            tienda.agregarProducto(comp);
+                                            System.out.println("✅ Componente validado y agregado.\n");
+                                        } else {
+                                            System.out.println("❌ Datos inválidos para el componente.\n");
+                                        }
                                     } else {
                                         String conexion = leerStringSeguro("Tipo de conexión: ");
-                                        tienda.agregarProducto(new Periferico("Periférico", descripcion, precio, stock, conexion));
+                                        Periferico per = new Periferico("Periférico", descripcion, precio, stock, conexion);
+
+                                        if (per.validarDatos(true)) {
+                                            tienda.agregarProducto(per);
+                                            System.out.println("✅ Periférico validado y agregado.\n");
+                                        } else {
+                                            System.out.println("❌ Datos inválidos para el periférico.\n");
+                                        }
                                     }
 
                                     System.out.println("✅ Producto agregado.\n");
@@ -227,19 +241,16 @@ public class TpIntegrador_Sanchez_Rios {
                                 case 6:
                                     tienda.mostrarProductos();
                                     break;
-                                
+
                                 case 7:
-                                    
+
                                     admin.mostrar();
                                     break;
-                                
+
                                 case 8:
                                     tienda.reiniciarBase();
                                     break;
-                                    
-                                case 9:
-                                    
-                                    break;
+
                             }
                         }
                         break;
